@@ -66,6 +66,32 @@ export default function ASoal1({ navigation, route }) {
 
             }}>
 
+
+                <TouchableOpacity onPress={() => setPilih({
+                    1: false,
+                    2: true,
+                    3: false,
+                    4: false,
+                    5: false
+                })} style={pilih[2] ? styles.tombolok : styles.tombol}>
+                    <Image source={require('../../assets/p3.png')} style={styles.gambar} />
+                    <Text style={styles.judul}>
+                        Keadilan Sosial Bagi Seluruh Rakyat Indonesia
+                    </Text>
+                </TouchableOpacity >
+
+                <TouchableOpacity onPress={() => setPilih({
+                    1: false,
+                    2: false,
+                    3: true,
+                    4: false,
+                    5: false
+                })} style={pilih[3] ? styles.tombolok : styles.tombol}>
+                    <Image source={require('../../assets/p2.png')} style={styles.gambar} />
+                    <Text style={styles.judul}>
+                        Persatuan Indonesia
+                    </Text>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => setPilih({
                     1: true,
                     2: false,
@@ -76,30 +102,6 @@ export default function ASoal1({ navigation, route }) {
                     <Image source={require('../../assets/p1.png')} style={styles.gambar} />
                     <Text style={styles.judul}>
                         Ketuhanan yang Maha esa
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setPilih({
-                    1: false,
-                    2: true,
-                    3: false,
-                    4: false,
-                    5: false
-                })} style={pilih[2] ? styles.tombolok : styles.tombol}>
-                    <Image source={require('../../assets/p2.png')} style={styles.gambar} />
-                    <Text style={styles.judul}>
-                        Keadilan Sosial Bagi Seluruh Rakyat Indonesia
-                    </Text>
-                </TouchableOpacity >
-                <TouchableOpacity onPress={() => setPilih({
-                    1: false,
-                    2: false,
-                    3: true,
-                    4: false,
-                    5: false
-                })} style={pilih[3] ? styles.tombolok : styles.tombol}>
-                    <Image source={require('../../assets/p3.png')} style={styles.gambar} />
-                    <Text style={styles.judul}>
-                        Persatuan Indonesia
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => setPilih({

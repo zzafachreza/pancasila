@@ -52,7 +52,7 @@ const Stack = createStackNavigator();
 
 export default function Router() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName='SCek'>
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -468,6 +468,18 @@ export default function Router() {
         }}
       />
 
+      <Stack.Screen
+        name="SCek"
+        component={SCek}
+        options={{
+          headerShown: false,
+          headerTitle: 'CEK HARGA DAN STOCK',
+          headerStyle: {
+            backgroundColor: colors.primary,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
 
       {/* <Stack.Screen
         name="SCek"

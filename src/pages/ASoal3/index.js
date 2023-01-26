@@ -65,7 +65,18 @@ export default function ASoal3({ navigation, route }) {
                 justifyContent: 'space-evenly'
 
             }}>
-
+                <TouchableOpacity onPress={() => setPilih({
+                    1: false,
+                    2: false,
+                    3: true,
+                    4: false,
+                    5: false
+                })} style={pilih[3] ? styles.tombolok : styles.tombol}>
+                    <Image source={require('../../assets/p3.png')} style={styles.gambar} />
+                    <Text style={styles.judul}>
+                        Persatuan Indonesia
+                    </Text>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => setPilih({
                     1: true,
                     2: false,
@@ -90,18 +101,7 @@ export default function ASoal3({ navigation, route }) {
                         Ketuhanan Yang Maha Esa
                     </Text>
                 </TouchableOpacity >
-                <TouchableOpacity onPress={() => setPilih({
-                    1: false,
-                    2: false,
-                    3: true,
-                    4: false,
-                    5: false
-                })} style={pilih[3] ? styles.tombolok : styles.tombol}>
-                    <Image source={require('../../assets/p3.png')} style={styles.gambar} />
-                    <Text style={styles.judul}>
-                        Persatuan Indonesia
-                    </Text>
-                </TouchableOpacity>
+
                 <TouchableOpacity onPress={() => setPilih({
                     1: false,
                     2: false,

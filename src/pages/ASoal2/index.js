@@ -78,18 +78,7 @@ export default function ASoal2({ navigation, route }) {
                         Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan Perwakilan
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => setPilih({
-                    1: false,
-                    2: true,
-                    3: false,
-                    4: false,
-                    5: false
-                })} style={pilih[2] ? styles.tombolok : styles.tombol}>
-                    <Image source={require('../../assets/p2.png')} style={styles.gambar} />
-                    <Text style={styles.judul}>
-                        Kemanusiaan yang adil dan beradab
-                    </Text>
-                </TouchableOpacity >
+
                 <TouchableOpacity onPress={() => setPilih({
                     1: false,
                     2: false,
@@ -126,6 +115,18 @@ export default function ASoal2({ navigation, route }) {
                         Persatuan Indonesia
                     </Text>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => setPilih({
+                    1: false,
+                    2: true,
+                    3: false,
+                    4: false,
+                    5: false
+                })} style={pilih[2] ? styles.tombolok : styles.tombol}>
+                    <Image source={require('../../assets/p2.png')} style={styles.gambar} />
+                    <Text style={styles.judul}>
+                        Kemanusiaan yang adil dan beradab
+                    </Text>
+                </TouchableOpacity >
 
 
 

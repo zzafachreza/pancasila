@@ -47,7 +47,7 @@ export default function ({ navigation }) {
       setTimeout(() => {
         setLoading(false);
         storeData('user', kirim);
-        navigation.replace('Home')
+        navigation.replace('SCek')
       }, 800)
 
 
