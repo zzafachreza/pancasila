@@ -113,96 +113,68 @@ export default function Register({ navigation }) {
 
             {/* <Switch onValueChange={toggleSwitch} value={isEnabled} /> */}
             <ScrollView showsVerticalScrollIndicator={false} style={styles.page}>
+                <Text style={{
+                    textAlign: 'center',
+                    fontFamily: fonts.secondary[600],
+                    fontSize: windowWidth / 20,
+                    marginBottom: 10,
+                }}>Petunjuk Penggunaan</Text>
+
+                <View style={{
+                    flexDirection: 'row',
+                    marginVertical: 5
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 28,
+                    }}>1. </Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 28,
+                    }}>Selesaikan game puzzle dengan benar</Text>
+                </View>
+                <View style={{
+                    flexDirection: 'row',
+                    marginVertical: 5
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 28,
+                    }}>2. </Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 28,
+                    }}>Kalau belum bisa menyelesaikan puzzle..maka belum bisa mengerjakan soaal make and match</Text>
+                </View>
+                <View style={{
+                    flexDirection: 'row',
+                    marginVertical: 5
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 28,
+                    }}>3. </Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 28,
+                    }}>Lanjut menjawab soal dengan benar dengan menghubungkan simbol dan sila pancasila.                    </Text>
+                </View>
+                <View style={{
+                    flexDirection: 'row',
+                    marginVertical: 5
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 28,
+                    }}>4. </Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 28,
+                    }}>Skormu akan ditampilkan di akhir</Text>
+                </View>
 
 
 
-
-                <MyGap jarak={10} />
-                <MyInput
-
-                    label="NIK"
-                    iconname="card"
-                    keyboardType="number-pad"
-                    placeholder="Masukan nomor nik"
-                    value={data.nik}
-                    onChangeText={value =>
-                        setData({
-                            ...data,
-                            nik: value,
-                        })
-                    }
-                />
-                <MyGap jarak={10} />
-                <MyInput
-                    placeholder="Masukan email"
-                    label="Email"
-                    iconname="mail"
-                    value={data.email}
-                    onChangeText={value =>
-                        setData({
-                            ...data,
-                            email: value,
-                        })
-                    }
-                />
-
-                <MyGap jarak={10} />
-                <MyInput
-                    placeholder="Masukan nama lengkap"
-                    label="Nama Lengkap"
-                    iconname="person"
-                    value={data.nama_lengkap}
-                    onChangeText={value =>
-                        setData({
-                            ...data,
-                            nama_lengkap: value,
-                        })
-                    }
-                />
-
-                <MyGap jarak={10} />
-                <MyInput
-                    placeholder="Masukan nomor telepon"
-                    label="Telepon"
-                    iconname="call"
-                    keyboardType="phone-pad"
-                    value={data.telepon}
-                    onChangeText={value =>
-                        setData({
-                            ...data,
-                            telepon: value,
-                        })
-                    }
-                />
-
-
-
-
-                <MyGap jarak={10} />
-                <MyInput
-                    placeholder="Masukan password"
-                    label="Password"
-                    iconname="key"
-                    secureTextEntry
-                    value={data.password}
-                    onChangeText={value =>
-                        setData({
-                            ...data,
-                            password: value,
-                        })
-                    }
-                />
-                <MyGap jarak={20} />
-                {!loading &&
-                    <MyButton
-
-                        warna={colors.primary}
-                        title="Daftar Sekarang"
-                        Icons="log-in"
-                        onPress={simpan}
-                    />
-                }
-                <MyGap jarak={20} />
 
                 {loading && <View style={{
                     flex: 1,

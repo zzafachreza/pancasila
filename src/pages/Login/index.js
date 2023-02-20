@@ -148,7 +148,7 @@ export default function ({ navigation }) {
               warna={colors.primary}
               Icons="grid"
             />
-            {/* <TouchableOpacity onPress={() => navigation.navigate('Register')} style={{
+            <TouchableOpacity onPress={() => navigation.navigate('Register')} style={{
               padding: 10,
               justifyContent: 'center',
               alignItems: 'center'
@@ -157,14 +157,14 @@ export default function ({ navigation }) {
               marginTop: 10,
               fontFamily: fonts.primary[400],
               textAlign: 'center',
-              color: colors.secondary
-            }}>Belum punya akun ? <Text style={{
+              color: colors.black
+            }}>Petunjuk penggunaan <Text style={{
               fontSize: windowWidth / 28,
               marginTop: 10,
               fontFamily: fonts.primary[600],
               textAlign: 'center',
-              color: colors.secondary
-            }}>Daftar disini</Text></Text></TouchableOpacity> */}
+              color: colors.black
+            }}>Lihat disini</Text></Text></TouchableOpacity>
           </>
         }
 

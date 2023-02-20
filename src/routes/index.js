@@ -91,7 +91,7 @@ export default function Router() {
         name="Register"
         component={Register}
         options={{
-          headerShown: true,
+          headerShown: false,
           headerTitle: 'Daftar Pengguna',
           headerStyle: {
             backgroundColor: colors.primary,
