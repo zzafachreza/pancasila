@@ -27,7 +27,7 @@ export default function ASoal4({ navigation, route }) {
                 1: route.params[2],
                 2: route.params[2],
                 3: route.params[3],
-                4: 10,
+                4: 20,
                 5: route.params[5],
 
             });

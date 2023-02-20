@@ -125,7 +125,30 @@ export default function Home({ navigation }) {
                 fontSize: 20
               }}>1</Text>
 
+
             </TouchableOpacity>}
+
+            {user[1] !== null && user[5] == null && <View style={{
+              width: 50,
+              backgroundColor: colors.black,
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 60,
+              marginTop: 40,
+              borderBottomLeftRadius: 50,
+              borderBottomRightRadius: 50,
+              position: 'relative'
+            }}>
+
+
+              <Image source={require('../../assets/star.png')} style={{
+                width: 40,
+                height: 40,
+                top: 5,
+                position: 'absolute'
+              }} />
+
+            </View>}
           </View>
 
           <View>

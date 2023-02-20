@@ -461,27 +461,27 @@ export default function SCek({ navigation, route }) {
             <View>
                 <MyButton onPress={() => {
                     console.log(gambar)
+                    navigation.navigate('Home')
+                    // if (gambar[1] == 21 &&
+                    //     gambar[2] == 20 &&
+                    //     gambar[3] == 24 &&
+                    //     gambar[4] == 26 &&
+                    //     gambar[5] == 25 &&
+                    //     gambar[6] == 23 &&
+                    //     gambar[7] == 19 &&
+                    //     gambar[8] == 22 &&
+                    //     gambar[9] == 27
 
-                    if (gambar[1] == 21 &&
-                        gambar[2] == 20 &&
-                        gambar[3] == 24 &&
-                        gambar[4] == 26 &&
-                        gambar[5] == 25 &&
-                        gambar[6] == 23 &&
-                        gambar[7] == 19 &&
-                        gambar[8] == 22 &&
-                        gambar[9] == 27
+                    // ) {
 
-                    ) {
-
-                        showMessage({
-                            type: 'success',
-                            message: 'Selamat Kamu berhasil menyelesaikan puzzle'
-                        });
-                        navigation.navigate('Home')
-                    } else {
-                        Alert.alert(MYAPP, 'Maaf Puzzle Belum Sesuai !')
-                    }
+                    //     showMessage({
+                    //         type: 'success',
+                    //         message: 'Selamat Kamu berhasil menyelesaikan puzzle'
+                    //     });
+                    //     navigation.navigate('Home')
+                    // } else {
+                    //     Alert.alert(MYAPP, 'Maaf Puzzle Belum Sesuai !')
+                    // }
 
                 }} radius={0} title="Selesai" colorText={colors.black} />
             </View>

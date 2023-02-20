@@ -24,7 +24,7 @@ export default function ASoal1({ navigation, route }) {
                 absen: route.params.absen,
                 kelas: route.params.kelas,
                 sekolah: route.params.sekolah,
-                1: 10,
+                1: 20,
                 2: route.params[2],
                 3: route.params[3],
                 4: route.params[4],

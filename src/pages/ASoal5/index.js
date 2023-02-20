@@ -28,7 +28,7 @@ export default function ASoal5({ navigation, route }) {
                 2: route.params[2],
                 3: route.params[3],
                 4: route.params[4],
-                5: 10
+                5: 20
 
             });
             navigation.goBack();

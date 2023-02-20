@@ -25,7 +25,7 @@ export default function ASoal2({ navigation, route }) {
                 kelas: route.params.kelas,
                 sekolah: route.params.sekolah,
                 1: route.params[1],
-                2: 10,
+                2: 20,
                 3: route.params[3],
                 4: route.params[4],
                 5: route.params[5],
