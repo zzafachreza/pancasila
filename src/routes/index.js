@@ -44,6 +44,7 @@ import {
   ASoal3,
   ASoal4,
   ASoal5,
+  Game,
 } from '../pages';
 import { colors } from '../utils';
 import { Icon } from 'react-native-elements';
@@ -287,6 +288,22 @@ export default function Router() {
       />
 
       {/* SOAL */}
+
+      <Stack.Screen
+        name="Game"
+        component={Game}
+        options={{
+          headerShown: true,
+          headerTitle: 'Link And Match',
+          headerStyle: {
+            backgroundColor: colors.white,
+          },
+          headerTintColor: colors.black,
+        }}
+      />
+
+
+
       <Stack.Screen
         name="ASoal5"
         component={ASoal5}

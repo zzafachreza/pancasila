@@ -258,6 +258,20 @@ export default function Home({ navigation }) {
       }}>Skor Kamu : {(user[1] === null ? 0 : parseInt(user[1])) + (user[2] === null ? 0 : parseInt(user[2])) + (user[3] === null ? 0 : parseInt(user[3])) + (user[4] === null ? 0 : parseInt(user[4])) + (user[5] === null ? 0 : parseInt(user[5]))}</Text>
  */}
 
+      {user[1] == null &&
+        <TouchableOpacity style={{
+          padding: 10,
+          backgroundColor: colors.secondary
+        }}
+
+          onPress={() => navigation.navigate('Game', user)}
+        ><Text style={{
+          fontFamily: fonts.secondary[600],
+          fontSize: windowWidth / 20,
+          textAlign: 'center'
+        }}>Mulai Link & Match</Text></TouchableOpacity>
+      }
+
     </SafeAreaView >
   )
 }

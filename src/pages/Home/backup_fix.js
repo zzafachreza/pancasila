@@ -1,27 +1,29 @@
-import { Alert, StyleSheet, Text, View, Image, FlatList, ActivityIndicator } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { Alert, StyleSheet, Text, View, Image, FlatList, ActivityIndicator, Dimensions, ImageBackground } from 'react-native'
+import React, { useState, useEffect, useRef } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { apiURL, getData, storeData } from '../../utils/localStorage';
+import { apiURL, getData, MYAPP, storeData } from '../../utils/localStorage';
 import { colors, fonts, windowHeight, windowWidth } from '../../utils';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { showMessage } from 'react-native-flash-message';
 import Sound from 'react-native-sound';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
-import { MyButton, MyInput } from '../../components';
+import { MyButton, MyGap, MyInput } from '../../components';
 import { useIsFocused } from '@react-navigation/native';
 import axios from 'axios';
 import { FloatingAction } from "react-native-floating-action";
 import 'intl';
 import 'intl/locale-data/jsonp/en';
+import Carousel, { ParallaxImage, Pagination } from 'react-native-snap-carousel';
+import { SliderBox } from "react-native-image-slider-box";
+import { color } from 'react-native-reanimated';
+
 
 export default function Home({ navigation }) {
-
     const [user, setUser] = useState({});
-    const [data, setData] = useState({});
-    const [loading, setLoading] = useState(false);
-    const [open, setOpen] = useState(false);
     const isFocused = useIsFocused();
     useEffect(() => {
+
+
         if (isFocused) {
             __getTransaction();
         }
@@ -30,85 +32,16 @@ export default function Home({ navigation }) {
 
     const __getTransaction = () => {
         getData('user').then(res => {
+            console.log(res)
             setUser(res);
         })
+
+
+
     }
 
-    const MyListData = ({ lab, val }) => {
-        return (
-            <View style={{
-                flexDirection: 'row',
-                marginHorizontal: 10,
-                borderBottomWidth: 1,
-                paddingVertical: 6,
-                borderBottomColor: colors.zavalabs,
-            }}>
-                <View style={{ flex: 0.7, }}>
-                    <Text style={{
-                        fontFamily: fonts.secondary[400],
-                        fontSize: windowWidth / 28,
-                        color: colors.black
-                    }}>{lab}</Text>
-                </View>
-                <View style={{ flex: 0.2, }}>
-                    <Text style={{
-                        fontFamily: fonts.secondary[400],
-                        fontSize: windowWidth / 28,
-                        color: colors.black
-                    }}>:</Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                    <Text style={{
-                        fontFamily: fonts.secondary[600],
-                        fontSize: windowWidth / 28,
-                        color: colors.black
-                    }}>{val}</Text>
-                </View>
-            </View>
-        )
-    }
-
-    const [key, setKey] = useState('');
-
-    const [formula, setFormula] = useState({
-        a8: 0,
-        a9: 0,
-        a10: 0,
-        a11: 0,
-        a12: 0,
-        a13: 0,
-        a14: 0,
-        a15: 0,
-        a16: 0
-    })
-
-    const filterData = () => {
-        setLoading(true);
-        axios.post(apiURL + 'part.php', {
-            part_number: key
-        }).then(res => {
-            setLoading(false);
-            console.log(res.data);
-            if (res.data.kode == 50) {
-                setOpen(false);
-                showMessage({
-                    message: 'Part Number tidak ditemukan !',
-                    type: 'danger',
-                })
-            } else {
-                setOpen(true);
-                console.log(res.data);
-                setData(res.data);
 
 
-                setFormula({
-                    ...formula,
-                    a8: res.data.price - (res.data.price * (res.data.discount / 100)),
-                    a9: (res.data.price - (res.data.price * (res.data.discount / 100))) * 15000,
-                })
-            }
-        })
-    }
 
     return (
         <SafeAreaView style={{
@@ -117,11 +50,10 @@ export default function Home({ navigation }) {
         }}>
             {/* header */}
             <View style={{
-                backgroundColor: colors.primary,
+                backgroundColor: colors.white,
                 paddingHorizontal: 10,
                 paddingVertical: 10,
             }}>
-
                 <View style={{
                     flexDirection: 'row',
                 }}>
@@ -131,96 +63,220 @@ export default function Home({ navigation }) {
                         <Text style={{
                             fontFamily: fonts.secondary[400],
                             fontSize: windowWidth / 28,
-                            color: colors.white
-                        }}>Selamat datang, {user.nama_lengkap}</Text>
+                            color: colors.black
+                        }}>Selamat datang, {user.nama}</Text>
                         <Text style={{
                             fontFamily: fonts.secondary[600],
                             fontSize: windowWidth / 28,
-                            color: colors.white
-                        }}>PT Wali Karunia Sejahtera</Text>
+                            color: colors.black
+                        }}>{MYAPP}</Text>
                     </View>
 
-                    <TouchableOpacity onPress={() => navigation.navigate('GetStarted')} style={{
+                    <TouchableOpacity onPress={() => navigation.navigate('Account')} style={{
                         justifyContent: 'center',
                         alignItems: 'center',
                         borderRadius: 30
                     }}>
-                        <Icon type='ionicon' name='person' color={colors.white} />
-                        {/* <Text style={{
-              fontFamily: fonts.secondary[400],
-              fontSize: windowWidth / 28,
-              color: colors.white
-            }}>Informasi Akun</Text> */}
+                        <Icon type='ionicon' name='person' color={colors.black} />
+
                     </TouchableOpacity>
 
                 </View>
-
-
             </View>
-            {/* body */}
+
+
+            <Text style={{
+                textAlign: 'center',
+                marginVertical: 10,
+                fontFamily: fonts.secondary[600]
+            }}>Pilihlah nomor di bawah ini</Text>
             <View style={{
+                flex: 1,
                 padding: 10,
-                flexDirection: 'row'
+                justifyContent: 'center',
+                alignItems: 'center'
             }}>
+                <ImageBackground source={require('../../assets/logo.png')} style={{
+                    width: 350,
+                    height: 380,
+                    position: 'relative',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    paddingTop: 35,
+                }}>
 
-                <View style={{
-                    flex: 1,
-                }}>
-                    <MyInput value={key} onChangeText={x => setKey(x)} autoFocus label="Enter Part Number" placeholder="please enter part number" iconname="file-tray-stacked-outline" />
-                </View>
-                <View style={{
-                    paddingVertical: 25,
-                    paddingLeft: 5,
-                }}>
-                    <TouchableOpacity onPress={filterData} style={{
-                        width: 60,
-                        borderRadius: 10,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: 50,
-                        backgroundColor: colors.primary,
+                    <View style={{
+                        position: 'absolute',
+                        zIndex: 100,
                     }}>
-                        <Icon type='ionicon' name='search' color={colors.white} />
-                    </TouchableOpacity>
-                </View>
+                        {user[1] == null && <TouchableOpacity onPress={() => navigation.navigate('ASoal1', user)} activeOpacity={1} style={{
+                            width: 50,
+                            backgroundColor: colors.primary,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: 60,
+                            marginTop: 40,
+                            borderBottomLeftRadius: 50,
+                            borderBottomRightRadius: 50,
+                        }}>
+                            <Text style={{
+                                color: colors.black,
+                                fontFamily: fonts.secondary[800],
+                                fontSize: 20
+                            }}>1</Text>
+
+
+                        </TouchableOpacity>}
+
+                        {user[1] !== null && user[5] == null && <View style={{
+                            width: 50,
+                            backgroundColor: colors.black,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: 60,
+                            marginTop: 40,
+                            borderBottomLeftRadius: 50,
+                            borderBottomRightRadius: 50,
+                            position: 'relative'
+                        }}>
+
+
+                            <Image source={require('../../assets/star.png')} style={{
+                                width: 40,
+                                height: 40,
+                                top: 5,
+                                position: 'absolute'
+                            }} />
+
+                        </View>}
+                    </View>
+
+                    <View>
+                        <View style={{
+                            width: 100,
+
+                            justifyContent: 'center',
+                            flexDirection: 'row',
+                        }}>
+                            <TouchableOpacity onPress={() => navigation.navigate('ASoal4', user)} activeOpacity={1} style={{
+                                width: 60,
+                                backgroundColor: user[4] == null ? '#646BFE' : 'transparent',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                height: 70
+                            }}>
+                                <Text style={{
+                                    color: colors.white,
+                                    fontFamily: fonts.secondary[800],
+                                    fontSize: 20
+                                }}>{user[4] == null ? 4 : ''}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigation.navigate('ASoal3', user)} activeOpacity={1} style={{
+                                width: 60,
+                                backgroundColor: user[3] == null ? '#8EFD4B' : 'transparent',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                height: 70
+                            }}>
+                                <Text style={{
+                                    color: colors.black,
+                                    fontFamily: fonts.secondary[800],
+                                    fontSize: 20
+                                }}>{user[3] == null ? 3 : ''}</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{
+                            width: 100,
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+
+                        }}>
+                            <TouchableOpacity onPress={() => navigation.navigate('ASoal5', user)} activeOpacity={1} style={{
+                                width: 60,
+                                backgroundColor: user[5] == null ? '#F05BFD' : 'transparent',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                height: 80,
+                                borderBottomLeftRadius: 100,
+                            }}>
+                                <Text style={{
+                                    color: colors.black,
+                                    fontFamily: fonts.secondary[800],
+                                    fontSize: 20
+                                }}>{user[5] == null ? 5 : ''}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigation.navigate('ASoal2', user)} activeOpacity={1} style={{
+                                width: 60,
+                                backgroundColor: user[2] == null ? 'yellow' : 'transparent',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                height: 80,
+                                borderBottomRightRadius: 140,
+                            }}>
+                                <Text style={{
+                                    color: colors.black,
+                                    fontFamily: fonts.secondary[800],
+                                    fontSize: 20
+                                }}>{user[2] == null ? 2 : ''}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </ImageBackground>
+
 
             </View>
 
-            {loading && <ActivityIndicator size="large" color={colors.primary} />}
-            {open && <>
+            {user[1] !== null && user[2] !== null && user[3] !== null && user[4] !== null && user[5] !== null && <Text style={{
+                textAlign: 'center',
+                marginVertical: 10,
+                color: colors.primary,
+                fontFamily: fonts.secondary[600]
+            }}>Selamat, Kamu telah menyelesaikan permainan</Text>}
 
-                <MyListData lab="Part No" val={data.part_number} />
-                <MyListData lab="Description" val={data.part_description} />
-                <MyListData lab="Division" val={data.division} />
-                <MyListData lab="List Price" val={data.price} />
-                <MyListData lab="Discount" val={`${data.discount}%`} />
-                <MyListData lab="Price After Discount" val={`$${formula.a8}`} />
-                <MyListData lab="Harga" val={`Rp${new Intl.NumberFormat().format(formula.a8 * 15000)}`} />
-                <MyListData lab="Harga + BM 10%" val={`Rp${new Intl.NumberFormat().format((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100))}`} />
-                <MyListData lab="Pph 2,5%" val={`Rp${new Intl.NumberFormat().format(((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100)) * 2.5 / 100)}`} />
-                <MyListData lab="Ppn 11%" val={`Rp${new Intl.NumberFormat().format(((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100)) * 11 / 100)}`} />
+            {user[1] !== null && user[2] !== null && user[3] !== null && user[4] !== null && user[5] !== null && <TouchableOpacity style={{
+                padding: 10,
+                backgroundColor: colors.secondary
+            }}
 
-                <MyListData lab="Ongkir 15%" val={`Rp${new Intl.NumberFormat().format((formula.a8 * 15000) * 15 / 100)}`} />
+                onPress={() => {
+                    axios.post(apiURL + 'nilai', user).then(res => {
+                        console.log(res.data);
+                        navigation.navigate('SHasil', {
+                            user: user,
+                            nilai: (user[1] === null ? 0 : parseInt(user[1])) + (user[2] === null ? 0 : parseInt(user[2])) + (user[3] === null ? 0 : parseInt(user[3])) + (user[4] === null ? 0 : parseInt(user[4])) + (user[5] === null ? 0 : parseInt(user[5]))
+                        })
+                    })
+                }}
+            ><Text style={{
+                fontFamily: fonts.secondary[600],
+                fontSize: windowWidth / 20,
+                textAlign: 'center'
+            }}>Skormu Lihat disini</Text></TouchableOpacity>}
 
-                <MyListData lab="Harga Modal" val={`Rp${new Intl.NumberFormat().format(((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100)) + (((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100)) * 2.5 / 100) + ((formula.a8 * 15000) * 15 / 100))}`} />
-                <MyListData lab="Harga Jual" val={`Rp${new Intl.NumberFormat().format((((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100)) + (((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100)) * 2.5 / 100) + ((formula.a8 * 15000) * 15 / 100)) + (((formula.a8 * 15000) + (((formula.a8 * 15000) * 10 / 100)) + (((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100)) * 2.5 / 100) + ((formula.a8 * 15000) * 15 / 100)) * 50 / 100))}`} />
 
-                <MyListData lab="Harga Nett" val={`Rp${new Intl.NumberFormat().format((((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100)) + (((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100)) * 2.5 / 100) + ((formula.a8 * 15000) * 15 / 100)) + (((formula.a8 * 15000) + (((formula.a8 * 15000) * 10 / 100)) + (((formula.a8 * 15000) + ((formula.a8 * 15000) * 10 / 100)) * 2.5 / 100) + ((formula.a8 * 15000) * 15 / 100)) * 30 / 100))}`} />
 
-                <MyListData lab="Stock" val={0} />
-            </>}
+
 
         </SafeAreaView >
     )
 }
 
 const styles = StyleSheet.create({
-    judul: {
-        fontFamily: fonts.secondary[600],
-        fontSize: windowWidth / 35
+    container: {
+        flex: 1,
     },
     item: {
-        fontFamily: fonts.secondary[400],
-        fontSize: windowWidth / 35
-    }
-})
+        width: windowHeight,
+        height: windowWidth / 2,
+    },
+    imageContainer: {
+        flex: 1,
+        marginBottom: 1, // Prevent a random Android rendering issue
+        backgroundColor: 'white',
+        borderRadius: 8,
+    },
+    image: {
+        ...StyleSheet.absoluteFillObject,
+        resizeMode: 'cover',
+    },
+});

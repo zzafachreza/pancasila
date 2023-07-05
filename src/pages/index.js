@@ -40,6 +40,7 @@ import ASoal2 from './ASoal2';
 import ASoal3 from './ASoal3';
 import ASoal4 from './ASoal4';
 import ASoal5 from './ASoal5';
+import Game from './Game/index,';
 
 
 
@@ -100,7 +101,8 @@ export {
   ASoal2,
   ASoal3,
   ASoal4,
-  ASoal5
+  ASoal5,
+  Game
   // NEW
 
 };
