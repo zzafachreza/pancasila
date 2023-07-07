@@ -135,7 +135,8 @@ export default function Game({ navigation, route }) {
                         }
 
                     }} style={done.a1 ? styles.tomboldone : pilih[1] ? styles.tombolok : styles.tombol}>
-                        <Image source={require('../../assets/p4.png')} style={styles.gambar} />
+
+                        <Image source={require('../../assets/p5.png')} style={styles.gambar} />
 
                     </Pressable >
 
@@ -185,7 +186,7 @@ export default function Game({ navigation, route }) {
 
 
                     }} style={done.c1 ? styles.tomboldone : pilih[3] ? styles.tombolok : styles.tombol}>
-                        <Image source={require('../../assets/p5.png')} style={styles.gambar} />
+                        <Image source={require('../../assets/p4.png')} style={styles.gambar} />
 
                     </Pressable >
 
