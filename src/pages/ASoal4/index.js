@@ -6,6 +6,8 @@ import { MYAPP, storeData } from '../../utils/localStorage';
 
 export default function Soal4({ navigation, route }) {
 
+    const NOMOR = 4;
+
     const [pilih, setPilih] = useState({
         1: false,
         2: false,
@@ -33,8 +35,8 @@ export default function Soal4({ navigation, route }) {
 
     const sendServer = () => {
 
-
-        if (nilai[4] !== 20) {
+        console.log(nilai);
+        if (nilai[NOMOR] !== 20) {
             Alert.alert(MYAPP, 'Maaf pilihan kamu masih salah !');
             setDone({
                 a1: false,
@@ -77,10 +79,10 @@ export default function Soal4({ navigation, route }) {
                 absen: route.params.absen,
                 kelas: route.params.kelas,
                 sekolah: route.params.sekolah,
+                [NOMOR]: 20,
                 1: route.params[1],
                 2: route.params[2],
                 3: route.params[3],
-                4: 20,
                 5: route.params[5],
 
             });
@@ -89,6 +91,43 @@ export default function Soal4({ navigation, route }) {
 
 
 
+    }
+
+    const ulangiPermainan = () => {
+        setDone({
+            a1: false,
+            a2: false,
+            b1: false,
+            b2: false,
+            c1: false,
+            c2: false,
+            d1: false,
+            d2: false,
+            e1: false,
+            e2: false,
+
+        })
+        setPilih({
+            1: false,
+            2: false,
+            3: false,
+            4: false,
+            5: false,
+        });
+        setPilih2({
+            1: false,
+            2: false,
+            3: false,
+            4: false,
+            5: false,
+        })
+        setNilai({
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+            5: 0
+        })
     }
 
     const [done, setDone] = useState({
@@ -126,21 +165,37 @@ export default function Soal4({ navigation, route }) {
 
                     <Pressable onPress={() => {
 
-                        if (pilih[1] && done.a1) {
-                            Alert.alert(MYAPP, 'Kamu sudah memilih ini . . .')
+                        if (Object.entries(pilih).filter(([key, value]) => value === true).length > 0) {
+                            Alert.alert(MYAPP, 'Kamu sudah memilih lambang lain . . .', [
+                                {
+                                    text: 'ULANGI',
+                                    onPress: () => { ulangiPermainan() }
+                                },
+                                {
+                                    text: 'LANJUT'
+                                }
+                            ])
+
                         } else {
-                            setPilih({
-                                1: true,
-                                2: false,
-                                3: false,
-                                4: false,
-                                5: false,
-                            });
-                            setDone({
-                                ...done,
-                                a1: true,
-                            })
+                            if (pilih[1] && done.a1) {
+                                Alert.alert(MYAPP, 'Kamu sudah memilih ini . . .')
+                            } else {
+                                setPilih({
+                                    1: true,
+                                    2: false,
+                                    3: false,
+                                    4: false,
+                                    5: false,
+                                });
+                                setDone({
+                                    ...done,
+                                    a1: true,
+                                })
+                            }
+
                         }
+
+
 
                     }} style={done.a1 ? styles.tomboldone : pilih[1] ? styles.tombolok : styles.tombol}>
 
@@ -150,23 +205,39 @@ export default function Soal4({ navigation, route }) {
 
                     <Pressable onPress={() => {
 
-                        if (pilih[2] && done.b1) {
-                            Alert.alert(MYAPP, 'Kamu sudah memilih ini . . .')
+                        if (Object.entries(pilih).filter(([key, value]) => value === true).length > 0) {
+                            Alert.alert(MYAPP, 'Kamu sudah memilih lambang lain . . .', [
+                                {
+                                    text: 'ULANGI',
+                                    onPress: () => { ulangiPermainan() }
+                                },
+                                {
+                                    text: 'LANJUT'
+                                }
+                            ])
                         } else {
 
-                            setPilih({
-                                1: false,
-                                2: true,
-                                3: false,
-                                4: false,
-                                5: false,
-                            })
-                            setDone({
-                                ...done,
-                                b1: true,
-                            })
+                            if (pilih[2] && done.b1) {
+                                Alert.alert(MYAPP, 'Kamu sudah memilih ini . . .')
+                            } else {
 
+                                setPilih({
+                                    1: false,
+                                    2: true,
+                                    3: false,
+                                    4: false,
+                                    5: false,
+                                })
+                                setDone({
+                                    ...done,
+                                    b1: true,
+                                })
+
+                            }
                         }
+
+
+
 
                     }} style={done.b1 ? styles.tomboldone : pilih[2] ? styles.tombolok : styles.tombol}>
                         <Image source={require('../../assets/p2.png')} style={styles.gambar} />
@@ -174,21 +245,34 @@ export default function Soal4({ navigation, route }) {
 
                     <Pressable onPress={() => {
 
-                        if (pilih[3] && done.c1) {
-                            Alert.alert(MYAPP, 'Kamu sudah memilih ini . . .')
+                        if (Object.entries(pilih).filter(([key, value]) => value === true).length > 0) {
+                            Alert.alert(MYAPP, 'Kamu sudah memilih lambang lain . . .', [
+                                {
+                                    text: 'ULANGI',
+                                    onPress: () => { ulangiPermainan() }
+                                },
+                                {
+                                    text: 'LANJUT'
+                                }
+                            ])
                         } else {
-                            setPilih({
-                                1: false,
-                                2: false,
-                                3: true,
-                                4: false,
-                                5: false,
-                            })
+                            if (pilih[3] && done.c1) {
+                                Alert.alert(MYAPP, 'Kamu sudah memilih ini . . .')
+                            } else {
+                                setPilih({
+                                    1: false,
+                                    2: false,
+                                    3: true,
+                                    4: false,
+                                    5: false,
+                                })
 
-                            setDone({
-                                ...done,
-                                c1: true,
-                            })
+                                setDone({
+                                    ...done,
+                                    c1: true,
+                                })
+                            }
+
                         }
 
 
@@ -200,22 +284,37 @@ export default function Soal4({ navigation, route }) {
 
                     <Pressable onPress={() => {
 
-                        if (pilih[4] && done.d1) {
-                            Alert.alert(MYAPP, 'Kamu sudah memilih ini . . .')
+                        if (Object.entries(pilih).filter(([key, value]) => value === true).length > 0) {
+                            Alert.alert(MYAPP, 'Kamu sudah memilih lambang lain . . .', [
+                                {
+                                    text: 'ULANGI',
+                                    onPress: () => { ulangiPermainan() }
+                                },
+                                {
+                                    text: 'LANJUT'
+                                }
+                            ])
                         } else {
+                            if (pilih[4] && done.d1) {
+                                Alert.alert(MYAPP, 'Kamu sudah memilih ini . . .')
+                            } else {
 
-                            setPilih({
-                                1: false,
-                                2: false,
-                                3: false,
-                                4: true,
-                                5: false,
-                            })
-                            setDone({
-                                ...done,
-                                d1: true,
-                            })
+                                setPilih({
+                                    1: false,
+                                    2: false,
+                                    3: false,
+                                    4: true,
+                                    5: false,
+                                })
+                                setDone({
+                                    ...done,
+                                    d1: true,
+                                })
+                            }
+
+
                         }
+
 
 
                     }} style={done.d1 ? styles.tomboldone : pilih[4] ? styles.tombolok : styles.tombol}>
@@ -223,23 +322,37 @@ export default function Soal4({ navigation, route }) {
                     </Pressable >
                     <Pressable onPress={() => {
 
-                        if (pilih[5] && done.e1) {
-                            Alert.alert(MYAPP, 'Kamu sudah memilih ini . . .')
+                        if (Object.entries(pilih).filter(([key, value]) => value === true).length > 0) {
+                            Alert.alert(MYAPP, 'Kamu sudah memilih lambang lain . . .', [
+                                {
+                                    text: 'ULANGI',
+                                    onPress: () => { ulangiPermainan() }
+                                },
+                                {
+                                    text: 'LANJUT'
+                                }
+                            ])
                         } else {
-                            setPilih({
-                                1: false,
-                                2: false,
-                                3: false,
-                                4: false,
-                                5: true,
-                            })
-                            setDone({
-                                ...done,
-                                e1: true,
-                            })
+                            if (pilih[5] && done.e1) {
+                                Alert.alert(MYAPP, 'Kamu sudah memilih ini . . .')
+                            } else {
+                                setPilih({
+                                    1: false,
+                                    2: false,
+                                    3: false,
+                                    4: false,
+                                    5: true,
+                                })
+                                setDone({
+                                    ...done,
+                                    e1: true,
+                                })
 
 
+                            }
                         }
+
+
 
 
                     }} style={done.e1 ? styles.tomboldone : pilih[5] ? styles.tombolok : styles.tombol}>
@@ -572,46 +685,59 @@ export default function Soal4({ navigation, route }) {
                     paddingHorizontal: 5
                 }}>
                     <Pressable onPress={() => {
-                        setDone({
-                            ...done,
-                            a2: true,
-                        });
 
-                        setTimeout(() => {
+
+                        if (Object.entries(pilih).filter(([key, value]) => value === true).length == 0) {
+                            Alert.alert(MYAPP, 'Silahkan pilih lambang telebih dahulu ! . . .')
+                        } else if (Object.entries(pilih2).filter(([key, value]) => value === true).length > 0) {
+
+                            setPilih2({
+                                1: true,
+                                2: false,
+                                3: false,
+                                4: false,
+                                5: false,
+                            });
                             setNilai({
-                                ...nilai,
-                                [3]: pilih[5] ? 20 : 0,
+                                [1]: 0,
+                                [2]: 0,
+                                [4]: 0,
+                                [5]: 0,
+                                [3]: Object.entries(pilih).filter(([key, value]) => value === true)[0][0] == 3 ? 20 : 0,
                             })
-                        }, 500);
+                            setDone({
+                                ...done,
+                                a2: true,
+                                b2: false,
+                                c2: false,
+                                d2: false,
+                                e2: false
+                            });
+                        } else {
+                            setDone({
+                                ...done,
+                                a2: true,
+                            });
 
-                        setTimeout(() => {
-
+                            setTimeout(() => {
+                                setNilai({
+                                    ...nilai,
+                                    [3]: pilih[5] ? 20 : 0,
+                                })
+                            }, 500);
 
 
                             setPilih2({
-                                1: false,
+                                1: true,
                                 2: false,
                                 3: false,
                                 4: false,
                                 5: false,
                             });
-                            setPilih({
-                                1: false,
-                                2: false,
-                                3: false,
-                                4: false,
-                                5: false,
-                            });
-                        }, 1000)
 
 
-                        setPilih2({
-                            1: true,
-                            2: false,
-                            3: false,
-                            4: false,
-                            5: false,
-                        });
+                        }
+
 
                     }} style={done.a2 ? styles.tomboldone2 : pilih2[1] ? styles.tombolok2 : styles.tombol2}>
                         <Text style={styles.judul}>
@@ -621,44 +747,56 @@ export default function Soal4({ navigation, route }) {
 
                     <Pressable onPress={() => {
 
-                        setTimeout(() => {
+                        if (Object.entries(pilih).filter(([key, value]) => value === true).length == 0) {
+                            Alert.alert(MYAPP, 'Silahkan pilih lambang telebih dahulu ! . . .')
+                        } else if (Object.entries(pilih2).filter(([key, value]) => value === true).length > 0) {
+                            setPilih2({
+                                1: false,
+                                2: true,
+                                3: false,
+                                4: false,
+                                5: false,
+                            });
                             setNilai({
-                                ...nilai,
-                                [5]: pilih[3] ? 20 : 0,
+                                [1]: 0,
+                                [2]: 0,
+                                [3]: 0,
+                                [4]: 0,
+                                [5]: Object.entries(pilih).filter(([key, value]) => value === true)[0][0] == 5 ? 20 : 0,
                             })
-                        }, 500);
+                            setDone({
+                                ...done,
+                                a2: false,
+                                b2: true,
+                                c2: false,
+                                d2: false,
+                                e2: false
+                            });
+                        } else {
+
+                            setTimeout(() => {
+                                setNilai({
+                                    ...nilai,
+                                    [5]: pilih[3] ? 20 : 0,
+                                })
+                            }, 500);
 
 
-                        setTimeout(() => {
+
 
                             setPilih2({
                                 1: false,
-                                2: false,
+                                2: true,
                                 3: false,
                                 4: false,
                                 5: false,
-                            });
-                            setPilih({
-                                1: false,
-                                2: false,
-                                3: false,
-                                4: false,
-                                5: false,
-                            });
-                        }, 1000)
+                            })
+                            setDone({
+                                ...done,
+                                b2: true,
+                            })
+                        }
 
-
-                        setPilih2({
-                            1: false,
-                            2: true,
-                            3: false,
-                            4: false,
-                            5: false,
-                        })
-                        setDone({
-                            ...done,
-                            b2: true,
-                        })
 
                     }} style={done.b2 ? styles.tomboldone2 : pilih2[2] ? styles.tombolok2 : styles.tombol2}>
                         <Text style={styles.judul}>
@@ -668,45 +806,57 @@ export default function Soal4({ navigation, route }) {
 
                     <Pressable onPress={() => {
 
-                        setTimeout(() => {
+
+                        if (Object.entries(pilih).filter(([key, value]) => value === true).length == 0) {
+                            Alert.alert(MYAPP, 'Silahkan pilih lambang telebih dahulu ! . . .')
+                        } else if (Object.entries(pilih2).filter(([key, value]) => value === true).length > 0) {
+                            setPilih2({
+                                1: false,
+                                2: false,
+                                3: true,
+                                4: false,
+                                5: false,
+                            });
                             setNilai({
-                                ...nilai,
-                                [1]: pilih[4] ? 20 : 0,
+                                [3]: 0,
+                                [2]: 0,
+                                [4]: 0,
+                                [5]: 0,
+                                [1]: Object.entries(pilih).filter(([key, value]) => value === true)[0][0] == 1 ? 20 : 0,
                             })
-                        }, 500);
+                            setDone({
+                                ...done,
+                                a2: false,
+                                b2: false,
+                                c2: true,
+                                d2: false,
+                                e2: false
+                            });
+                        } else {
+                            setTimeout(() => {
+                                setNilai({
+                                    ...nilai,
+                                    [1]: pilih[4] ? 20 : 0,
+                                })
+                            }, 500);
 
 
-                        setTimeout(() => {
 
                             setPilih2({
                                 1: false,
                                 2: false,
-                                3: false,
+                                3: true,
                                 4: false,
                                 5: false,
-                            });
-                            setPilih({
-                                1: false,
-                                2: false,
-                                3: false,
-                                4: false,
-                                5: false,
-                            });
-                        }, 1000)
+                            })
+
+                            setDone({
+                                ...done,
+                                c2: true,
+                            })
+                        }
 
 
-                        setPilih2({
-                            1: false,
-                            2: false,
-                            3: true,
-                            4: false,
-                            5: false,
-                        })
-
-                        setDone({
-                            ...done,
-                            c2: true,
-                        })
 
                     }} style={done.c2 ? styles.tomboldone2 : pilih2[3] ? styles.tombolok2 : styles.tombol2}>
                         <Text style={styles.judul}>
@@ -717,41 +867,57 @@ export default function Soal4({ navigation, route }) {
 
                     <Pressable onPress={() => {
 
-                        setTimeout(() => {
-                            setNilai({
-                                ...nilai,
-                                [4]: pilih[1] ? 20 : 0,
-                            })
-                        }, 500);
+                        if (Object.entries(pilih).filter(([key, value]) => value === true).length == 0) {
+                            Alert.alert(MYAPP, 'Silahkan pilih lambang telebih dahulu ! . . .')
+                        } else if (Object.entries(pilih2).filter(([key, value]) => value === true).length > 0) {
+                            setPilih2({
+                                1: false,
+                                2: false,
+                                3: false,
+                                4: true,
+                                5: false,
+                            });
 
-                        setTimeout(() => {
+                            setNilai({
+                                [1]: 0,
+                                [2]: 0,
+                                [3]: 0,
+                                [5]: 0,
+                                [4]: Object.entries(pilih).filter(([key, value]) => value === true)[0][0] == 4 ? 20 : 0,
+                            })
+                            setDone({
+                                ...done,
+                                a2: false,
+                                b2: false,
+                                c2: false,
+                                d2: true,
+                                e2: false
+                            });
+                        } else {
+
+                            setTimeout(() => {
+                                setNilai({
+                                    ...nilai,
+                                    [4]: pilih[1] ? 20 : 0,
+                                })
+                            }, 500);
+
 
                             setPilih2({
                                 1: false,
                                 2: false,
                                 3: false,
-                                4: false,
+                                4: true,
                                 5: false,
-                            });
-                            setPilih({
-                                1: false,
-                                2: false,
-                                3: false,
-                                4: false,
-                                5: false,
-                            });
-                        }, 1000)
-                        setPilih2({
-                            1: false,
-                            2: false,
-                            3: false,
-                            4: true,
-                            5: false,
-                        })
-                        setDone({
-                            ...done,
-                            d2: true,
-                        })
+                            })
+                            setDone({
+                                ...done,
+                                d2: true,
+                            })
+
+                        }
+
+
 
                     }} style={done.d2 ? styles.tomboldone2 : pilih2[4] ? styles.tombolok2 : styles.tombol2}>
                         <Text style={styles.judul}>
@@ -760,42 +926,56 @@ export default function Soal4({ navigation, route }) {
                     </Pressable >
                     <Pressable onPress={() => {
 
-                        setTimeout(() => {
+                        if (Object.entries(pilih).filter(([key, value]) => value === true).length == 0) {
+                            Alert.alert(MYAPP, 'Silahkan pilih lambang telebih dahulu ! . . .')
+                        } else if (Object.entries(pilih2).filter(([key, value]) => value === true).length > 0) {
+                            setPilih2({
+                                1: false,
+                                2: false,
+                                3: false,
+                                4: false,
+                                5: true,
+                            });
                             setNilai({
-                                ...nilai,
-                                [2]: pilih[2] ? 20 : 0,
+                                [1]: 0,
+                                [3]: 0,
+                                [4]: 0,
+                                [5]: 0,
+                                [2]: Object.entries(pilih).filter(([key, value]) => value === true)[0][0] == 2 ? 20 : 0,
                             })
-                        }, 500);
+                            setDone({
+                                ...done,
+                                a2: false,
+                                b2: false,
+                                c2: false,
+                                d2: false,
+                                e2: true
+                            });
+                        } else {
 
-                        setTimeout(() => {
+                            setTimeout(() => {
+                                setNilai({
+                                    ...nilai,
+                                    [2]: pilih[2] ? 20 : 0,
+                                })
+                            }, 500);
+
+
 
                             setPilih2({
                                 1: false,
                                 2: false,
                                 3: false,
                                 4: false,
-                                5: false,
-                            });
-                            setPilih({
-                                1: false,
-                                2: false,
-                                3: false,
-                                4: false,
-                                5: false,
-                            });
-                        }, 1000)
+                                5: true,
+                            })
+                            setDone({
+                                ...done,
+                                e2: true,
+                            })
+                        }
 
-                        setPilih2({
-                            1: false,
-                            2: false,
-                            3: false,
-                            4: false,
-                            5: true,
-                        })
-                        setDone({
-                            ...done,
-                            e2: true,
-                        })
+
 
                     }} style={done.e2 ? styles.tomboldone2 : pilih2[5] ? styles.tombolok2 : styles.tombol2}>
                         <Text style={styles.judul}>
@@ -820,7 +1000,7 @@ export default function Soal4({ navigation, route }) {
 
 const styles = StyleSheet.create({
     gambar: { width: 50, height: 50, },
-    judul: { fontFamily: fonts.secondary[400], fontSize: 12, maxWidth: 150 },
+    judul: { fontFamily: fonts.secondary[400], fontSize: 10, maxWidth: '100%' },
     tombol: {
         borderWidth: 1,
         width: 70,
