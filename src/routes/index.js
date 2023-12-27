@@ -45,6 +45,8 @@ import {
   ASoal4,
   ASoal5,
   Game,
+  Kdi,
+  Video,
 } from '../pages';
 import { colors } from '../utils';
 import { Icon } from 'react-native-elements';
@@ -57,6 +59,22 @@ export default function Router() {
       <Stack.Screen
         name="Splash"
         component={Splash}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Kdi"
+        component={Kdi}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="Video"
+        component={Video}
         options={{
           headerShown: false,
         }}

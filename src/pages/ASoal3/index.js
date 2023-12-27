@@ -1,6 +1,6 @@
 import { Image, SafeAreaView, StyleSheet, Text, View, Pressable, Alert } from 'react-native'
 import React, { useState } from 'react'
-import { colors, fonts, windowHeight, windowWidth } from '../../utils'
+import { MyDimensi, colors, fonts, windowHeight, windowWidth } from '../../utils'
 import { MyButton } from '../../components'
 import { MYAPP, storeData } from '../../utils/localStorage';
 
@@ -150,6 +150,12 @@ export default function Soal3({ navigation, route }) {
             backgroundColor: colors.white,
             padding: 0,
         }}>
+            <Text style={{
+                marginVertical: 10,
+                textAlign: 'center',
+                fontFamily: fonts.secondary[600],
+                fontSize: MyDimensi / 2.2
+            }}>Silahkan kalian memilih/mencari pasangan dibawah ini ! setelah memilih pasangan dibawah klik selesai.</Text>
 
             <View style={{
                 flex: 1,

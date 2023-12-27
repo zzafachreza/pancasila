@@ -41,7 +41,8 @@ import ASoal3 from './ASoal3';
 import ASoal4 from './ASoal4';
 import ASoal5 from './ASoal5';
 import Game from './Game/index,';
-
+import Kdi from './New/Kdi';
+import Video from './New/Video';
 
 
 
@@ -102,7 +103,10 @@ export {
   ASoal3,
   ASoal4,
   ASoal5,
-  Game
+  Game,
+  Kdi,
+  Video
+
   // NEW
 
 };

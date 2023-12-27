@@ -8,43 +8,60 @@ import {
   Animated,
 } from 'react-native';
 import { MyButton } from '../../components';
-import { colors, fonts, windowHeight, windowWidth } from '../../utils';
+import { MyDimensi, colors, fonts, windowHeight, windowWidth } from '../../utils';
 import { getData } from '../../utils/localStorage';
 
+
+const MyList = ({ l, v }) => {
+  return (
+    <View style={{
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <Text style={{
+        flex: 0.3,
+        fontFamily: fonts.secondary[400],
+        fontSize: MyDimensi / 2.2,
+        color: colors.black
+      }}>{l}</Text>
+      <Text style={{
+        flex: 0.1,
+        fontFamily: fonts.secondary[400],
+        fontSize: MyDimensi / 2.2,
+        color: colors.black
+      }}>:</Text>
+      <Text style={{
+        flex: 1,
+        fontFamily: fonts.secondary[400],
+        fontSize: MyDimensi / 2.2,
+        color: colors.black
+      }}>{v}</Text>
+    </View>
+  )
+}
 export default function Splash({ navigation }) {
-  const top = new Animated.Value(0.3);
-
-  const animasi = () => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(top, {
-          toValue: 1,
-          duration: 1000,
-        }),
-        Animated.timing(top, {
-          toValue: 0.3,
-          duration: 1000,
-        }),
-      ]),
-      {
-        iterations: 1,
-      },
-    ).start();
-  };
 
 
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     getData('user').then(res => {
+  //       if (!res) {
+  //         navigation.replace('Login')
+  //       } else {
+  //         navigation.replace('Home')
+  //       }
+  //     })
+  //   }, 1500)
+  // }, []);
 
   useEffect(() => {
     setTimeout(() => {
-      getData('user').then(res => {
-        if (!res) {
-          navigation.replace('Login')
-        } else {
-          navigation.replace('Home')
-        }
-      })
+      navigation.replace('Kdi')
     }, 1500)
   }, []);
+
 
 
   return (
@@ -63,23 +80,23 @@ export default function Splash({ navigation }) {
           source={require('../../assets/logo.png')}
           style={
             {
-              width: windowWidth - 100,
-              height: 300,
+              width: MyDimensi / 0.15,
+              height: MyDimensi / 0.15,
               resizeMode: 'contain',
-              marginBottom: 50,
+              marginBottom: 30,
             }
           }
         />
         <ActivityIndicator size="large" color={colors.primary} />
         <Text style={{
-          marginTop: 50,
+          marginTop: 30,
           fontFamily: fonts.secondary[600],
-          fontSize: windowHeight / 25,
+          fontSize: MyDimensi / 1.2,
           color: colors.black
         }}>GAME PUZZLE</Text>
         <Text style={{
           fontFamily: fonts.secondary[800],
-          fontSize: windowHeight / 15,
+          fontSize: MyDimensi / 0.8,
           color: colors.black
         }}>PANCASILA</Text>
 
@@ -87,6 +104,21 @@ export default function Splash({ navigation }) {
 
       </View>
 
+      <View style={{
+        paddingHorizontal: 20,
+        justifyContent: 'center',
+        flex: 0.5,
+      }}>
+        <MyList l="Nama" v="Nova Yolanda" />
+        <MyList l="NIM" v="180141391" />
+        <MyList l="Prodi" v="Pendidikan Guru Sekolah Dasar (PGSD)" />
+        <Text style={{
+          marginTop: 5,
+          fontFamily: fonts.secondary[600],
+          fontSize: MyDimensi / 1.78,
+          color: colors.black,
+        }}>Universitas Muhammadiyah Bangka Belitung</Text>
+      </View>
 
 
 
